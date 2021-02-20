@@ -19,5 +19,10 @@ pipeline {
                 echo "Releasing the project.........."
             }
         }
+        post {
+        always {
+            emailext body: 'Declarative Pipeline Result', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Declarative Pipeline Result'
+            }
+        }
     }
 }
